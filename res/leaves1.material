@@ -1,0 +1,37 @@
+material trunk1
+{
+	
+    technique
+    {
+        pass 0
+        {
+	    defines=TEXTURE_DISCARD_ALPHA
+            vertexShader = res/shaders/textured.vert
+            fragmentShader = res/shaders/textured.frag
+	    u_worldViewProjectionMatrix = WORLD_VIEW_PROJECTION_MATRIX
+	    u_inverseTransposeWorldViewMatrix = INVERSE_TRANSPOSE_WORLD_VIEW_MATRIX
+
+            // samplers
+            sampler u_diffuseTexture
+            {
+                path = leaves1.png
+                mipmap = false
+                wrapS = REPEAT
+                wrapT = REPEAT
+                minFilter = LINEAR
+                magFilter = LINEAR
+            }
+			
+	    // render state
+            renderState
+            {
+                cullFace = false
+                depthTest = true
+                blend = true
+                
+            }
+        }
+    }
+
+	
+}

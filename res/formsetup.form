@@ -1,0 +1,115 @@
+form basicControls
+{
+    theme = res/default.theme
+    layout = LAYOUT_ABSOLUTE
+    style = basicContainer
+    size = 200, 600
+    position = 10, 100
+	consumeInputEvents = true
+    	
+	label title
+	{
+		style = underlined
+		position = 10, 0
+		size = 200, 50
+		text = Canotaje01
+	}
+		
+	button cameraButton
+	{
+		style = buttonHover
+		position = 10, 50
+		size = 100, 50
+		text = Camara
+	}
+	
+	checkbox flowCheckbox
+	{
+		style = iconNoBorder
+		position = 20, 110
+		size = 200, 40
+		text = stop flow
+	}
+	
+	checkbox pauseCheckbox
+	{
+		style = iconNoBorder
+		position = 20, 160
+		size = 200, 40
+		text = pause physics
+	}
+
+	
+	
+	slider rollSlider
+	{
+		style = topLeftNoBorder
+		position = 25, 220
+		size = 150, 60
+		orientation = HORIZONTAL
+		min = -180
+		max = 180
+		value = 0
+		//step = 5
+		text = Roll (degrees).
+		valueTextVisible = true
+		consumeInputEvents = true
+	}
+
+      
+	slider yawSlider
+	{
+		style = topLeftNoBorder
+		position = 25, 320
+		size = 150, 60
+		orientation = HORIZONTAL
+		min = -180
+		max = 180
+		value = 0
+		//step = 5
+		text = Yaw (degrees).
+		valueTextVisible = true
+		consumeInputEvents = true
+	}
+
+      
+	slider pitchSlider
+	{
+		style = topLeftNoBorder
+		position = 25, 400
+		size = 150, 60
+		orientation = HORIZONTAL
+		min = -180
+		max = 180
+		value = 0
+		//step = 5
+		text = Pitch (degrees).
+		valueTextVisible = true
+		consumeInputEvents = true
+	}
+	
+	label debugtitle
+	{
+		style = underlined
+		position = 10,450
+		size = 200, 50
+		text = debug
+	}
+
+	label debug0
+	{
+		style = topLeftNoBorder
+		position = 10, 500
+		size = 200, 50
+		text = debug0
+	}
+
+	label debug1
+	{
+		style = topLeftNoBorder
+		position = 10, 550
+		size = 200, 50
+		text = debug1
+	}
+   
+}

@@ -1,0 +1,59 @@
+material lighting
+{
+	u_textureRepeat = 1.0, 1.0
+	u_textureOffset = 0.0, 0.0
+	
+	//cesar: corner of the active tile in the animated map
+	u_normalmapOffset = 0.0, 0.0
+	//cesar: map down the uvcoord from diffuse to normal map tiles
+	u_normalmapFactor = 0.1, 0.1
+
+	technique directionalSpecularBumped
+    {
+        pass 0
+        {
+            // shaders
+            vertexShader = res/shaders/textured-bumped-water.vert
+            fragmentShader = res/shaders/textured-bumped-water.frag
+			defines = TEXTURE_REPEAT; TEXTURE_OFFSET; SPECULAR
+			u_cameraPosition = CAMERA_VIEW_POSITION 
+			u_worldViewMatrix = WORLD_VIEW_MATRIX
+			u_worldViewProjectionMatrix = WORLD_VIEW_PROJECTION_MATRIX
+			u_inverseTransposeWorldViewMatrix = INVERSE_TRANSPOSE_WORLD_VIEW_MATRIX
+
+            // samplers
+            sampler u_diffuseTexture
+            {
+                //path = res/brick.png
+                //path = water512_prekf.png
+                //path = water_water_0048_01_preview.png
+                path = water_surface_gimp.png
+                mipmap = true
+                wrapS = REPEAT
+                wrapT = REPEAT
+                minFilter = NEAREST_MIPMAP_LINEAR
+                magFilter = LINEAR
+            }
+			
+			sampler u_normalmapTexture
+            {
+                //path = res/brickn.png
+                path = res/water100.png
+                mipmap = true
+                wrapS = REPEAT
+                wrapT = REPEAT
+                minFilter = NEAREST_MIPMAP_LINEAR
+                magFilter = LINEAR
+            }
+
+            // render state
+            renderState
+            {
+                cullFace = true
+                depthTest = true
+            }
+        }
+    }
+
+	
+}

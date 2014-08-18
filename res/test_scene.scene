@@ -1,0 +1,25 @@
+scene
+{
+	path = res/test_scene.gpb
+	
+	
+	node balsa
+	{
+		material = res/box.material
+		//collisionObject = res/test_scene.physics#balsa
+	}
+	
+	
+	node rio
+	{
+		material = res/rio.material
+		collisionObject = res/test_scene.physics#rio
+	}
+	
+	//node terrain
+	//{
+	//	terrain = res/sample.terrain
+
+	//}
+	
+}

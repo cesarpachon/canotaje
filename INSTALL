@@ -1,0 +1,57 @@
+1. INSTALACION DE DEPENDENCIAS
+
+Para la comunicacion serial, se requiere que el sistema tenga instalada la libreria libserial (http://libserial.sourceforge.net/) 
+
+./configure
+make
+sudo make install 
+
+al hacer make, puede salir el siguiente error:
+SerialStreamBuf.cc:171:40: error: 'bzero' was not declared in this scope
+
+aplicar el siguiente patch:
+http://forum.arduino.cc/index.php/topic,39321.0.html
+
+para verificar que quedo bien instalada, ver si existe el archivo: 
+/usr/local/lib/libserial.a
+======================================================================
+
+2. PRUEBA DE COMUNICACION SERIAL
+para probar que el simulador se este comunicando con el puerto serial, se puede lanzar el programa emulador (subcarpeta /emulador) 
+
+
+======================================
+COMPILACION DEL EMULADOR
+
+para compilar el emulador, ingresar a la subcarpeta emulador y ejecutar estos comandos:
+make clean
+make
+
+===========================================
+EJECUCION DEL EMULADOR 
+este programa requiere la existencia de un par de puertos virtuales entre el simulador y el emulador. 
+
+para esto se usa el programa socat, 
+instalarlo con sudo apt-get install socat 
+
+luego se ejecuta: 
+socat -d -d pty,raw,echo=1 pty,raw,echo=1
+
+hay que anotar el nombre de los dos puertos virtuales que crea, y dejar el programa corriendo en una consola independiente. por ejemplo: 
+socat[14361] N PTY is /dev/pts/4
+socat[14361] N PTY is /dev/pts/5
+
+los puertos creados son /dev/pts/4 y /dev/pts/5
+
+el primer puerto se usará para el simulador, el segundo para el emulador.
+el puerto de simulador se configura en el archivo serial.config
+
+el emulador requiere encontrar la libreria dinamica libserial, para ello hay que definir el path antes de ejecutar el programa: 
+
+LD_LIBRARY_PATH=/usr/local/lib
+export LD_LIBRARY_PATH
+
+el puerto de emulador se pasa como parametro durante la ejecucion del mismo.   
+
+emulador /dev/pts/5
+
